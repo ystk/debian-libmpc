@@ -1,0 +1,102 @@
+libmpc (2:0.1~r459-1) unstable; urgency=low
+
+  * New upstream SVN snapshot.
+  * debian/control,
+    debian/compat,
+    debian/source/format,
+    debian/rules:
+    + Update to source format 3.0 (quilt).
+    + Update to debhelper compat level 7.
+    + Update Standards-Version to 3.8.4.
+  * debian/patches/01_am-maintainer-mode.patch:
+    + Enable automake maintainer mode.
+  * debian/patches/03_mpcchap.patch,
+    debian/rules:
+    + Enable mpcchap tool and build it against libcue.
+  * debian/patches/99_autoreconf.patch:
+    + Regenerate autotools files for the above patches.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 31 May 2010 16:33:10 +0200
+
+libmpc (2:0.1~r453-1) unstable; urgency=low
+
+  * New upstream SVN snapshot:
+    + debian/patches/01_no-mpcchap.patch:
+      - Dropped, not necessary anymore.
+    + debian/patches/02_link-libm.patch:
+      - Updated to apply cleanly again.
+  * Upload to unstable.
+  * debian/control:
+    + Updated Standards-Version to 3.8.3.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 20 Oct 2009 20:08:39 +0200
+
+libmpc (2:0.1~r444-1) experimental; urgency=low
+
+  * New upstream SVN snapshot with some minor bugfixes.
+  * debian/control:
+    + Fix indention of the description (Closes: #519962).
+    + Updated Standards-Version to 3.8.2.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 11 Jul 2009 12:51:53 +0200
+
+libmpc (2:0.1~r435-2) experimental; urgency=low
+
+  * Updating epoch and upload to experimental to give maintainers of packages
+    that depend on libmpc-dev again some more time to port their applications
+    to the new API.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 11 Mar 2009 06:43:23 +0100
+
+libmpc (1:0.1~r435-1) unstable; urgency=low
+
+  * New upstream stable release (Closes: #518116):
+    + mpcchap is not built because we don't have libcuefile packaged yet.
+    + debian/patches/02_link-libm.patch:
+      - Updated to apply cleanly again.
+    + debian/control:
+      - Build depend on latest libreplaygain for the new API.
+  * debian/control:
+    + Update Standards-Version to 3.8.0, no additional changes needed.
+  * debian/rules:
+    + Update shlibs for API additions.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 04 Mar 2009 10:08:01 +0100
+
+libmpc (1:0.1~r406-1) experimental; urgency=low
+
+  * New upstream SVN snapshot:
+    + debian/control:
+      - Build depend on new enough libreplaygain-dev.
+  * debian/rules:
+    + Correctly set shlibs version.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 22 May 2008 11:14:53 +0200
+
+libmpc (1:0.1~r402-1) experimental; urgency=low
+
+  * New upstream SVN snapshot:
+    + Adds some missing API to the headers.
+    + Only symbols that are needed are exported.
+    + debian/patches/03_crc32-internal.patch:
+      - Dropped, not necessary anymore.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 25 Apr 2008 00:21:14 +0200
+
+libmpc (1:0.1~r394-2) experimental; urgency=low
+
+  * debian/control:
+    + Wrap control fields.
+    + Update maintainer to pkg-multimedia.
+  * debian/patches/03_crc32-internal.patch:
+    + Rename crc32() to _mpc_crc32() to avoid conflicts with other libraries
+      like zlib for example.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 19 Apr 2008 23:11:33 +0200
+
+libmpc (1:0.1~r394-1) experimental; urgency=high
+
+  * Initial version (Closes: #472203).
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 07 Apr 2008 12:35:20 +0200
+

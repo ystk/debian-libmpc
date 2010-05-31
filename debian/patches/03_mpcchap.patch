@@ -1,0 +1,66 @@
+Index: libmpc-0.1~r459/configure.in
+===================================================================
+--- libmpc-0.1~r459.orig/configure.in	2010-05-31 16:37:55.690454133 +0200
++++ libmpc-0.1~r459/configure.in	2010-05-31 16:37:56.834454007 +0200
+@@ -28,6 +28,12 @@
+ AC_SUBST([EXTRALIBS])
+ 
+ AC_ARG_ENABLE([mpcchap], [AS_HELP_STRING([--enable-mpcchap], [enable building mpcchap])])
++if test "x$enable_mpcchap" = xyes; then
++  PKG_CHECK_MODULES(LIBCUE, libcue)
++  AC_SUBST(LIBCUE_CFLAGS)
++  AC_SUBST(LIBCUE_LIBS)
++fi
++
+ AM_CONDITIONAL([MPC_CHAP], [test "x$enable_mpcchap" = xyes])
+ 
+ AM_CONDITIONAL([HAVE_VISIBILITY], true)
+Index: libmpc-0.1~r459/mpcchap/Makefile.am
+===================================================================
+--- libmpc-0.1~r459.orig/mpcchap/Makefile.am	2010-05-31 16:37:54.118445192 +0200
++++ libmpc-0.1~r459/mpcchap/Makefile.am	2010-05-31 16:37:56.834454007 +0200
+@@ -4,7 +4,8 @@
+ 
+ common_sources = ../common/tags.c ../common/crc32.c
+ 
+-AM_CPPFLAGS = -I$(top_srcdir)/include
++AM_CPPFLAGS = -I$(top_srcdir)/include \
++	$(LIBCUE_CFLAGS)
+ 
+ if HAVE_VISIBILITY
+   AM_CFLAGS = -fvisibility=hidden
+@@ -16,4 +17,4 @@
+ 
+ mpcchap_LDADD = $(top_builddir)/libmpcdec/libmpcdec.la \
+ 	$(top_builddir)/libmpcenc/libmpcenc.a \
+-	-lm -lcuefile
++	-lm $(LIBCUE_LIBS)
+Index: libmpc-0.1~r459/mpcchap/mpcchap.c
+===================================================================
+--- libmpc-0.1~r459.orig/mpcchap/mpcchap.c	2010-05-31 16:37:54.130447137 +0200
++++ libmpc-0.1~r459/mpcchap/mpcchap.c	2010-05-31 16:39:22.318445340 +0200
+@@ -24,7 +24,7 @@
+ 
+ #include <sys/stat.h>
+ 
+-#include <cuetools/cuefile.h>
++#include <libcue/libcue.h>
+ 
+ // tags.c
+ void    Init_Tags        ( void );
+@@ -153,13 +153,13 @@
+ mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, mpc_streaminfo * si)
+ {
+ 	Cd *cd = 0;
+-	int nchap, format = UNKNOWN;
++	int nchap;
+ 	struct stat stbuf;
+ 	FILE * in_file;
+ 	int chap_pos, end_pos, chap_size, i;
+ 	char * tmp_buff;
+ 
+-	if (0 == (cd = cf_parse(chap_file, &format))) {
++	if (0 == (cd = cue_parse_file(chap_file))) {
+ 		fprintf(stderr, "%s: input file error\n", chap_file);
+ 		return !MPC_STATUS_OK;
+ 	}

@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+common-binary-post-install-arch:: list-missing
+
+DEB_DH_MAKESHLIBS_ARGS_libmpcdec6 := -V 'libmpcdec6 (>= 1:0.1~r435)'
+DEB_CONFIGURE_EXTRA_FLAGS += --enable-mpcchap
+
