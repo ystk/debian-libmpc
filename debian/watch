@@ -1,0 +1,4 @@
+version=3
+opts="uversionmangle=s/^/0.1~r/" \
+http://www.musepack.net/index.php?pg=src \
+ http://files.musepack.net/source/musepack_src_r([0-9]+)\.tar\.gz

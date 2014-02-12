@@ -1,3 +1,37 @@
+libmpc (2:0.1~r459-4) unstable; urgency=medium
+
+  * Team upload.
+  * Bump urgency to medium as RC #665974 affects wheezy.
+  * Avoid re-define mpc_uint8_t, MPC_SAMPLE_FORMAT and mpc_int16_t in
+    libmpcdec/requant.h, they are defined somewhere else in the code;
+    patch taken from upstream trunk. (Closes: #665974)
+    Thanks to Han Boetes for the report and Fabian Greffrath for
+    traging the bug.
+
+ -- Alessio Treglia <alessio@debian.org>  Thu, 21 Jun 2012 09:37:38 +0200
+
+libmpc (2:0.1~r459-3) unstable; urgency=low
+
+  * Team upload.
+  * Fix buildsystem to avoid FTBFS with --as-needed.
+    Thanks to Stefan Potyra for the patch. (Closes: #606829)
+  * Run autotools' stuff before configure to regenerate the buildsystem.
+    - Drop 99_autoreconf.patch.
+    - Build-Depends on gnulib, auto{conf,make} libtool.
+  * Bump Standards.
+
+ -- Alessio Treglia <alessio@debian.org>  Sun, 17 Jun 2012 21:05:37 +0200
+
+libmpc (2:0.1~r459-2) unstable; urgency=low
+
+  * Team upload.
+  * Update maintainer information.
+  * Add watch file.
+  * Build for Multiarch.
+  * Bump Standards.
+
+ -- Alessio Treglia <alessio@debian.org>  Wed, 15 Feb 2012 01:11:57 +0100
+
 libmpc (2:0.1~r459-1) unstable; urgency=low
 
   * New upstream SVN snapshot.

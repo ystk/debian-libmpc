@@ -1,4 +1,5 @@
 01_am-maintainer-mode.patch
 02_link-libm.patch
 03_mpcchap.patch
-99_autoreconf.patch
+04_link-order.patch
+1001_missing_extern_kw.patch

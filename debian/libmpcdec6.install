@@ -1,1 +1,1 @@
-debian/tmp/usr/lib/libmpcdec.so.*
+usr/lib/*/libmpcdec.so.*
