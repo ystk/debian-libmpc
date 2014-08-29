@@ -1,3 +1,16 @@
+libmpc (2:0.1~r459-4.1) unstable; urgency=low
+
+  [ Hideki Yamane ]
+  * Non-maintainer upload.
+    - auto detect aclocal/automake/autoconf version (Closes: #713209)
+    - include autoreconf.mk to add "config/compile" file
+  * debian/control
+    - add "Build-Depends: dh-autoreconf" to provide above autoreconf.mk
+  * debian/patches
+    - add add_subdir-objects.patch for automake
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 22 Mar 2014 14:25:56 +0000
+
 libmpc (2:0.1~r459-4) unstable; urgency=medium
 
   * Team upload.

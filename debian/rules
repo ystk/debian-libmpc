@@ -3,14 +3,15 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/rules/autoreconf.mk
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 DEB_AUTO_UPDATE_LIBTOOL = pre
-DEB_AUTO_UPDATE_ACLOCAL = 1.11
-DEB_AUTO_UPDATE_AUTOCONF = 2.67
-DEB_AUTO_UPDATE_AUTOHEADER = 2.67
-DEB_AUTO_UPDATE_AUTOMAKE = 1.11
+DEB_AUTO_UPDATE_ACLOCAL = $(shell dpkg -s automake | perl -nle '/^Version: (?:\d:)?(\d+\.\d+)?/ and print $$1')
+DEB_AUTO_UPDATE_AUTOCONF = $(shell dpkg -s autoconf | perl -nle '/^Version: (?:\d:)?(\d+\.\d+)?/ and print $$1')
+DEB_AUTO_UPDATE_AUTOMAKE = $(shell dpkg -s automake | perl -nle '/^Version: (?:\d:)?(\d+\.\d+)?/ and print $$1')
+DEB_AUTO_UPDATE_AUTOHEADER = $(shell dpkg -s autoheader | perl -nle '/^Version: (?:\d:)?(\d+\.\d+)?/ and print $$1')
 
 common-binary-post-install-arch:: list-missing
 

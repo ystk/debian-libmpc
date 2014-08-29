@@ -3,3 +3,4 @@
 03_mpcchap.patch
 04_link-order.patch
 1001_missing_extern_kw.patch
+add_subdir-objects.patch
